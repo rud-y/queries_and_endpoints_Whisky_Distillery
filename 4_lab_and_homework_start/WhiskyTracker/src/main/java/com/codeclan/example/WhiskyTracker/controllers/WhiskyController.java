@@ -30,7 +30,6 @@ public class WhiskyController {
             return new ResponseEntity<>(whiskyRepository.findByDistilleryRegion(region), HttpStatus.OK);
         }
 
-
         if(distillery != null && age != null){
             return new ResponseEntity<>(whiskyRepository.findByDistilleryNameAndAge(distillery,age), HttpStatus.OK);
         }

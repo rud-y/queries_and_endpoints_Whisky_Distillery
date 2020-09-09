@@ -18,7 +18,13 @@ public class DistilleryController {
 
     //INDEX
     @GetMapping(value = "/distilleries")
-    public ResponseEntity<List<Distillery>> getAllDistilleries(@RequestParam(name = "region", required = false) String region){
+    public ResponseEntity<List<Distillery>> getAllDistilleries(
+            @RequestParam(name = "region", required = false) String region,
+            @RequestParam(name = "age", required = false) Integer age
+            ){
+        if(age != null){
+            return new ResponseEntity<>(distilleryRepository.findByWhiskiesAgeEquals(age), HttpStatus.OK);
+        }
         if(region != null) {
             return new ResponseEntity<>(distilleryRepository.findByRegion(region), HttpStatus.OK);
         }
